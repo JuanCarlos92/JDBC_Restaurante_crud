@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/stylesMenu.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crudrestaurante.controllers.MenuController">
+
+    <top>
+       <MenuBar BorderPane.alignment="CENTER">
+           <Menu mnemonicParsing="false" text="Opciones">
+               <MenuItem mnemonicParsing="false" onAction="#onClickClose" text="Close" />
+           </Menu>
+       </MenuBar>
+   </top>
+   <left>
+       <VBox alignment="CENTER" prefHeight="375.0" prefWidth="602.0" spacing="20.0" BorderPane.alignment="CENTER">
+           <Button fx:id="btCliente" mnemonicParsing="false" onAction="#onClickCliente" prefHeight="55.0" prefWidth="315.0" style="-fx-background-color: #ffe6b8;" text="Clientes">
+              <font>
+                  <Font name="Consolas" size="30.0" />
+              </font>
+           </Button>
+           <Button fx:id="btProducto" mnemonicParsing="false" onAction="#onClickProducto" prefHeight="55.0" prefWidth="315.0" style="-fx-background-color: #ffe6b8;" text="Productos">
+              <font>
+                  <Font name="Consolas" size="30.0" />
+              </font>
+           </Button>
+           <Button fx:id="btPedido" mnemonicParsing="false" onAction="#onClickPedido" prefHeight="55.0" prefWidth="315.0" style="-fx-background-color: #ffe6b8;" text="Pedidos">
+              <font>
+                  <Font name="Consolas" size="30.0" />
+              </font>
+           </Button>
+         <effect>
+            <DropShadow />
+         </effect>
+       </VBox>
+   </left>
+</BorderPane>

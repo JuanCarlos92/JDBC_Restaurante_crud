@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="551.0" prefWidth="773.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crudrestaurante.controllers.DetallePedidoController">
+    <Label fx:id="lbTitulo" layoutX="115.0" layoutY="20.0" text="Detalles del pedido">
+        <font>
+          <Font name="Consolas Bold" size="36.0" />
+        </font>
+    </Label>
+    <Button fx:id="btAgregar" layoutX="210.0" layoutY="396.0" mnemonicParsing="false" onAction="#agregarProducto" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Agregar Producto">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btModificar" layoutX="406.0" layoutY="396.0" mnemonicParsing="false" onAction="#modificarDetallePedido" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Modificar">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btBorrar" layoutX="602.0" layoutY="396.0" mnemonicParsing="false" onAction="#borrarDetallePedido" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Borrar">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Label fx:id="lbCantidad" layoutX="35.0" layoutY="168.0" text="Cantidad" underline="true">
+        <font>
+          <Font name="System Bold" size="15.0" />
+        </font>
+    </Label>
+    <Label fx:id="lbProductos" layoutX="35.0" layoutY="78.0" prefHeight="21.0" prefWidth="80.0" text="Producto" underline="true">
+        <font>
+          <Font name="System Bold" size="15.0" />
+        </font>
+    </Label>
+   <Button fx:id="btVolver" layoutX="34.0" layoutY="265.0" mnemonicParsing="false" onAction="#volverAPedidos" prefHeight="86.0" prefWidth="163.0" style="-fx-background-color: #ffe6b8;" text="Guardar Cambios">
+      <effect>
+         <DropShadow />
+      </effect>
+      <font>
+         <Font name="System Italic" size="18.0" />
+      </font>
+   </Button>
+    <TextField fx:id="tfCantidad" layoutX="35.0" layoutY="211.0" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: fff3db;">
+      <effect>
+         <DropShadow />
+      </effect>
+    </TextField>
+   <ComboBox fx:id="comboBoxProducto" layoutX="35.0" layoutY="117.0" prefHeight="25.0" prefWidth="163.0" style="-fx-background-color: fff3db;">
+       <effect>
+         <DropShadow />
+      </effect>
+   </ComboBox>
+    <TableView fx:id="tableView" layoutX="210.0" layoutY="89.0" prefHeight="262.0" prefWidth="513.0">
+      <columns>
+          <TableColumn fx:id="tableId" prefWidth="39.0" text="ID" />
+          <TableColumn fx:id="tableIdPedido" prefWidth="74.0" text="ID Pedido" />
+          <TableColumn fx:id="tableProducto" prefWidth="126.0" text="Producto" />
+          <TableColumn fx:id="tableCantidad" minWidth="0.0" prefWidth="79.0" text="Cantidad" />
+         <TableColumn fx:id="tablePrecio" minWidth="0.0" prefWidth="78.0" text="Precio" />
+          <TableColumn fx:id="tableSubtotal" prefWidth="115.0" text="Subtotal" />
+      </columns>
+      <effect>
+         <DropShadow />
+      </effect>
+    </TableView>
+
+</AnchorPane>

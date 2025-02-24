@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="524.0" prefWidth="710.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crudrestaurante.controllers.ProductoController">
+    <Label fx:id="lbTitulo" layoutX="111.0" layoutY="24.0" text="Productos">
+        <font>
+          <Font name="Consolas Bold" size="36.0" />
+        </font>
+    </Label>
+    <Button fx:id="btCrear" layoutX="36.0" layoutY="404.0" mnemonicParsing="false" onAction="#crearProducto" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Crear Producto">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btBuscar" layoutX="201.0" layoutY="404.0" mnemonicParsing="false" onAction="#buscarProducto" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Buscar Producto">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btModificar" layoutX="376.0" layoutY="404.0" mnemonicParsing="false" onAction="#modificarProducto" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Modificar Producto">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btBorrar" layoutX="544.0" layoutY="404.0" mnemonicParsing="false" onAction="#borrarProducto" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Borrar Producto">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btLista" layoutX="544.0" layoutY="25.0" mnemonicParsing="false" onAction="#cargarProductos" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8;" text="Actualizar Lista">
+      <effect>
+         <DropShadow />
+      </effect></Button>
+    <Button fx:id="btVolver" layoutX="413.0" layoutY="25.0" mnemonicParsing="false" onAction="#volverAlMenu" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8;" text=" Volver al Menú">
+        <effect>
+            <DropShadow />
+        </effect></Button>
+    <Label fx:id="lbNombre" layoutX="37.0" layoutY="85.0" text="Nombre" underline="true">
+        <font>
+          <Font name="System Bold" size="15.0" />
+        </font>
+    </Label>
+    <Label fx:id="lbCategoria" layoutX="37.0" layoutY="167.0" prefHeight="21.0" prefWidth="93.0" text="Categoría" underline="true">
+        <font>
+          <Font name="System Bold" size="15.0" />
+        </font>
+    </Label>
+    <Label fx:id="lbPrecio" layoutX="38.0" layoutY="248.0" text="Precio" underline="true">
+        <font>
+          <Font name="System Bold" size="15.0" />
+        </font>
+    </Label>
+   <Label fx:id="lbDisponibilidad" layoutX="38.0" layoutY="324.0" text="Disponibilidad" underline="true">
+      <font>
+         <Font name="System Bold" size="15.0" />
+      </font>
+   </Label>
+    <TextField fx:id="tfNombre" layoutX="38.0" layoutY="120.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: fff3db;">
+      <effect>
+         <DropShadow />
+      </effect></TextField>
+    <TextField fx:id="tfCategoria" layoutX="38.0" layoutY="201.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: fff3db;">
+      <effect>
+         <DropShadow />
+      </effect></TextField>
+   <TextField fx:id="tfPrecio" layoutX="38.0" layoutY="283.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: fff3db;">
+      <effect>
+         <DropShadow />
+      </effect>
+   </TextField>
+   <TextField fx:id="tfDisponibilidad" layoutX="38.0" layoutY="355.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: fff3db;">
+      <effect>
+         <DropShadow />
+      </effect>
+   </TextField>
+    <TableView fx:id="tableView" layoutX="243.0" layoutY="85.0" prefHeight="298.0" prefWidth="422.0">
+      <columns>
+          <TableColumn fx:id="tableId" prefWidth="39.0" text="ID" />
+          <TableColumn fx:id="tableNombre" prefWidth="91.0" text="Nombre" />
+          <TableColumn fx:id="tableCategoria" prefWidth="111.0" text="Categoría" />
+          <TableColumn fx:id="tablePrecio" prefWidth="88.0" text="Precio" />
+          <TableColumn fx:id="tableDisponibilidad" prefWidth="92.0" text="Disponibilidad" />
+      </columns>
+      <effect>
+         <DropShadow />
+      </effect>
+    </TableView>
+
+</AnchorPane>

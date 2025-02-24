@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="516.0" prefWidth="694.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crudrestaurante.controllers.PedidoController">
+    <Label fx:id="lbTitulo" layoutX="101.0" layoutY="21.0" text="Pedidos">
+        <font>
+          <Font name="Consolas Bold" size="36.0" />
+        </font>
+    </Label>
+    <Button fx:id="btCrear" layoutX="41.0" layoutY="380.0" mnemonicParsing="false" onAction="#crearPedido" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Crear Pedido">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btBuscar" layoutX="204.0" layoutY="380.0" mnemonicParsing="false" onAction="#buscarPedido" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Buscar Pedido">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btModificar" layoutX="374.0" layoutY="380.0" mnemonicParsing="false" onAction="#modificarPedido" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Modificar Pedido">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btBorrar" layoutX="530.0" layoutY="380.0" mnemonicParsing="false" onAction="#borrarPedido" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Borrar Pedido">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btLista" layoutX="530.0" layoutY="22.0" mnemonicParsing="false" onAction="#cargarPedidos" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8;" text="Actualizar Lista">
+      <effect>
+         <DropShadow />
+      </effect></Button>
+    <Button fx:id="btVolver" layoutX="390.0" layoutY="22.0" mnemonicParsing="false" onAction="#volverAlMenu" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8;" text=" Volver al Menú">
+        <effect>
+            <DropShadow />
+        </effect></Button>
+    <Label fx:id="lbNombreCliente" layoutX="40.0" layoutY="300.0" text="Nombre del Cliente" underline="true">
+        <font>
+          <Font size="15.0" />
+        </font>
+    </Label>
+    <Label fx:id="lbEstado" layoutX="240.0" layoutY="300.0" prefHeight="21.0" prefWidth="80.0" text="Estado" underline="true">
+        <font>
+          <Font size="15.0" />
+        </font>
+    </Label>
+    <ComboBox fx:id="comboBoxClientes" layoutX="40.0" layoutY="330.0" prefHeight="25.0" prefWidth="171.0" style="-fx-background-color: fff3db;">
+        <effect>
+            <DropShadow />
+        </effect>
+    </ComboBox>
+   <ComboBox fx:id="comboBoxEstado" layoutX="240.0" layoutY="330.0" prefHeight="25.0" prefWidth="171.0" style="-fx-background-color: fff3db;">
+      <items>
+         <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Pendiente" />
+            <String fx:value="En preparación" />
+            <String fx:value="Entregado" />
+         </FXCollections>
+      </items>
+      <effect>
+         <DropShadow />
+      </effect>
+   </ComboBox>
+    <TableView fx:id="tableView" layoutX="42.0" layoutY="77.0" prefHeight="200.0" prefWidth="610.0">
+      <columns>
+          <TableColumn fx:id="tableId" prefWidth="39.0" text="ID" />
+          <TableColumn fx:id="tableClienteNombre" prefWidth="119.0" text="Nombre Cliente" />
+          <TableColumn fx:id="tableFecha" prefWidth="103.0" text="Fecha" />
+          <TableColumn fx:id="tableHora" prefWidth="113.0" text="Hora" />
+          <TableColumn fx:id="tableEstado" prefWidth="126.0" text="Estado" />
+          <TableColumn fx:id="tableTotal" prefWidth="107.0" text="Total" />
+      </columns>
+      <effect>
+         <DropShadow />
+      </effect>
+    </TableView>
+   <Button fx:id="btAñadirProducto" layoutX="435.0" layoutY="280.0" mnemonicParsing="false" onAction="#seleccionarPedido" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Añadir Productos...">
+      <cursor>
+         <Cursor fx:constant="V_RESIZE" />
+      </cursor>
+      <effect>
+         <ColorAdjust brightness="-0.28" contrast="0.14" hue="0.11" saturation="-1.0" />
+      </effect>
+      <font>
+         <Font name="Comic Sans MS Italic" size="13.0" />
+      </font>
+   </Button>
+
+</AnchorPane>

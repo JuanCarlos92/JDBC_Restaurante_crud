@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="501.0" prefWidth="599.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crudrestaurante.controllers.ClienteController">
+    <Label fx:id="lbTitulo" layoutX="85.0" layoutY="41.0" text="Clientes">
+        <font>
+          <Font name="Consolas Bold" size="36.0" />
+        </font>
+    </Label>
+    <Button fx:id="btCrear" layoutX="34.0" layoutY="371.0" mnemonicParsing="false" onAction="#crearCliente" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Crear Cliente">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btBuscar" layoutX="173.0" layoutY="371.0" mnemonicParsing="false" onAction="#buscarCliente" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Buscar Cliente">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btModificar" layoutX="312.0" layoutY="371.0" mnemonicParsing="false" onAction="#modificarCliente" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Modificar Cliente">
+      <effect>
+         <Reflection />
+      </effect></Button>
+    <Button fx:id="btBorrar" layoutX="445.0" layoutY="371.0" mnemonicParsing="false" onAction="#borrarCliente" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Borrar Cliente">
+      <effect>
+         <Reflection />
+      </effect></Button>
+   <Button fx:id="btVolver" layoutX="303.0" layoutY="42.0" mnemonicParsing="false" onAction="#volverAlMenu" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8;" text="Volver al Menú">
+      <effect>
+         <DropShadow />
+      </effect>
+   </Button>
+    <Button fx:id="btLista" layoutX="442.0" layoutY="42.0" mnemonicParsing="false" onAction="#cargarClientes" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8;" text="Actualizar Lista">
+      <effect>
+         <DropShadow />
+      </effect></Button>
+    <Label fx:id="lbNombre" layoutX="42.0" layoutY="92.0" text="Nombre" underline="true">
+        <font>
+          <Font name="System Bold" size="15.0" />
+        </font>
+    </Label>
+    <Label fx:id="lbTelefono" layoutX="41.0" layoutY="165.0" text="Teléfono" underline="true">
+        <font>
+          <Font name="System Bold" size="15.0" />
+        </font>
+    </Label>
+    <Label layoutX="39.0" layoutY="243.0" text="Dirección" underline="true">
+        <font>
+          <Font name="System Bold" size="15.0" />
+        </font>
+    </Label>
+    <TextField fx:id="tfNombre" layoutX="43.0" layoutY="127.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: fff3db;">
+      <effect>
+         <DropShadow />
+      </effect></TextField>
+    <TextField fx:id="tfTelefono" layoutX="43.0" layoutY="199.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: fff3db;">
+      <effect>
+         <DropShadow />
+      </effect></TextField>
+    <TextField fx:id="tfDireccion" layoutX="43.0" layoutY="275.0" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: fff3db;">
+      <effect>
+         <DropShadow />
+      </effect></TextField>
+    <TableView fx:id="tableView" layoutX="235.0" layoutY="112.0" prefHeight="200.0" prefWidth="326.0">
+      <columns>
+          <TableColumn fx:id="tableId" prefWidth="39.0" text="ID" />
+          <TableColumn fx:id="tableNombre" prefWidth="91.0" text="Nombre" />
+          <TableColumn fx:id="tableTelefono" prefWidth="100.0" text="Teléfono" />
+          <TableColumn fx:id="tableDireccion" prefWidth="94.0" text="Dirección" />
+      </columns>
+      <effect>
+         <DropShadow />
+      </effect>
+    </TableView>
+
+</AnchorPane>
