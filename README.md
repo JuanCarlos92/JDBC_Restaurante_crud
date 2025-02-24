@@ -33,21 +33,21 @@ Este proyecto permite gestionar los pedidos de un restaurante, incluyendo el reg
 
 ## Plan de Desarrollo
 
-### Primera semana (3 - 7 de Febrero)
+### Primera entrega
 - Crear la Base de Datos en MySQL.
 - Configurar la conexión entre Java y MySQL.
 - Diseñar el menú principal y formulario de gestión de clientes.
 - Programar las funciones CRUD para Clientes.
 - Mostrar los clientes en una TableView.
 
-### Segunda semana (10 - 14 de Febrero)
+### Segunda entrega
 - Diseñar el formulario para la gestión de Productos.
 - Programar las funciones CRUD para Productos.
 - Conectar la base de datos para mostrar productos en una TableView.
 - Implementar transiciones entre ventanas.
 - Agregar botón para volver a la ventana principal.
 
-### Tercera semana (17 - 24 de Febrero)
+### Tercera entrega
 - Diseñar el formulario para la gestión de Pedidos.
 - Programar las funciones CRUD para Pedidos.
 - Crear tablas para almacenar pedidos y detalles de pedidos.
