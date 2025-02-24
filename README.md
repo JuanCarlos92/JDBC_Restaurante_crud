@@ -71,7 +71,7 @@ Este proyecto permite gestionar los pedidos de un restaurante, incluyendo el reg
 ## Instalación
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/sistema-pedidos-restaurante.git
+   git clone https://github.com/JuanCarlos92/JDBC_Restaurante_crud.git
    ```
 2. Importa el proyecto en tu IDE favorito (IntelliJ, Eclipse, NetBeans).
 3. Importar la Base de datos y cambiar usuario y contraseña 
