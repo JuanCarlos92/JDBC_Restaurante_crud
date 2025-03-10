@@ -1,22 +1,18 @@
-package org.example.crudrestaurante.models;
+package org.example.jdbcrestaurantecrud.models;
 
 
 public class Producto {
 
-    private Integer id;
-
+    private Integer id_producto;
     private String nombre;
-
     private String categoria;
-
     private float precio;
-
     private int disponibilidad;
 
     public Producto() {}
 
-    public Producto(int id, String nombre, String categoria, float precio, int disponibilidad) {
-        this.id = id;
+    public Producto(int id_producto, String nombre, String categoria, float precio, int disponibilidad) {
+        this.id_producto = id_producto;
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
@@ -24,18 +20,18 @@ public class Producto {
     }
 
     public Producto(int idProducto, String nombreProducto, float precioProducto) {
-        this.id = idProducto;
+        this.id_producto = idProducto;
         this.nombre = nombreProducto;
         this.precio = precioProducto;
     }
 
 
-    public Integer getId() {
-        return id;
+    public Integer getId_producto() {
+        return id_producto;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_producto(Integer id_producto) {
+        this.id_producto = id_producto;
     }
 
     public String getNombre() {

@@ -1,4 +1,4 @@
-package org.example.crudrestaurante.database;
+package org.example.jdbcrestaurantecrud.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

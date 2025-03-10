@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>CRUDRestaurante</artifactId>
+    <artifactId>JDBC_Restaurante_crud</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>CRUDGestionRestaurante</name>
 
@@ -21,7 +21,19 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
         </dependency>
-
+        <!-- -->
+        <!-- Dependencia JasperReports-->
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.21.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+        <!-- -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -69,7 +81,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                org.example.crudgestionrestaurante/org.example.crudrestaurante.Application
+                                org.example.crudgestionrestaurante/org.example.jdbcrestaurantecrud.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

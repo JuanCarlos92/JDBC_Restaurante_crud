@@ -1,4 +1,4 @@
-package org.example.crudrestaurante.controllers;
+package org.example.jdbcrestaurantecrud.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,14 +7,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.example.crudrestaurante.database.DatabaseConnection;
-import org.example.crudrestaurante.models.Pedido;
-import org.example.crudrestaurante.models.Cliente;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+import org.example.jdbcrestaurantecrud.database.DatabaseConnection;
+import org.example.jdbcrestaurantecrud.models.Pedido;
+import org.example.jdbcrestaurantecrud.models.Cliente;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PedidoController {
 
@@ -32,20 +38,22 @@ public class PedidoController {
     private Button btVolver;
 
     private final ObservableList<Pedido> listaPedidos = FXCollections.observableArrayList();
+    private final ObservableList<Pedido> listaPedidosPreparacion = FXCollections.observableArrayList();
 
 
     @FXML
     public void initialize() {
-        tableId.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        tableId.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId_pedido()).asObject());
         tableClienteNombre.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getCliente().getNombre()));
-        tableFecha.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFechaPedido().toString()));
-        tableHora.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getHoraPedido().toString()));
+        tableFecha.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getFecha_pedido().toString()));
+        tableHora.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getHora_pedido().toString()));
         tableTotal.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(String.valueOf(cellData.getValue().getTotal())));
         tableEstado.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getEstado()));
 
         comboBoxEstado.setItems(FXCollections.observableArrayList("Pendiente", "En preparación", "Entregado"));
         cargarClientes();
         cargarPedidos();
+        cargarPedidosPreparacion();
         tableView.setItems(listaPedidos);
     }
 
@@ -79,10 +87,10 @@ public class PedidoController {
             while (rs.next()) {
                 Cliente cliente = new Cliente(rs.getInt("id_cliente"), rs.getString("nombre"), "", "");
                 Pedido pedido = new Pedido();
-                pedido.setId(rs.getInt("id_pedido"));
+                pedido.setId_pedido(rs.getInt("id_pedido"));
                 pedido.setCliente(cliente);
-                pedido.setFechaPedido(rs.getDate("fecha_pedido").toLocalDate());
-                pedido.setHoraPedido(rs.getTime("hora_pedido").toLocalTime());
+                pedido.setFecha_pedido(rs.getDate("fecha_pedido"));
+                pedido.setHora_pedido(rs.getTime("hora_pedido"));
                 pedido.setEstado(rs.getString("estado"));
                 pedido.setTotal(rs.getFloat("total"));
                 listaPedidos.add(pedido);
@@ -93,6 +101,27 @@ public class PedidoController {
         }
     }
 
+    private void cargarPedidosPreparacion() {
+        listaPedidosPreparacion.clear();
+        String query = "SELECT * FROM Pedidos WHERE estado ='en preparación'";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setId_pedido(rs.getInt("id_pedido"));
+                pedido.setId_cliente(rs.getInt("id_cliente"));
+                pedido.setFecha_pedido(rs.getDate("fecha_pedido"));
+                pedido.setHora_pedido(rs.getTime("hora_pedido"));
+                pedido.setEstado(rs.getString("estado"));
+                pedido.setTotal(rs.getFloat("total"));
+                listaPedidosPreparacion.add(pedido);
+            }
+        } catch (SQLException e) {
+            mostrarAlerta("Error", "No se pudo cargar la lista de pedidos en preparacion.");
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void crearPedido() throws SQLException {
@@ -155,12 +184,12 @@ public class PedidoController {
                  PreparedStatement stmt = conn.prepareStatement(query)) {
 
                 stmt.setString(1, nuevoEstado);
-                stmt.setInt(2, pedidoSeleccionado.getId());
+                stmt.setInt(2, pedidoSeleccionado.getId_pedido());
                 stmt.executeUpdate();
 
-            cargarPedidos();
-            limpiarCampos();
-            mostrarAlertaExito("Éxito", "Pedido modificado correctamente.");
+                cargarPedidos();
+                limpiarCampos();
+                mostrarAlertaExito("Éxito", "Pedido modificado correctamente.");
 
             } catch (SQLException e) {
                 mostrarAlerta("Error", "No se pudo modificar el pedido.");
@@ -209,10 +238,10 @@ public class PedidoController {
 
                 while (rsPedidos.next()) {
                     Pedido pedido = new Pedido();
-                    pedido.setId(rsPedidos.getInt("id_pedido"));
+                    pedido.setId_pedido(rsPedidos.getInt("id_pedido"));
                     pedido.setCliente(new Cliente(idCliente, clienteSeleccionado, "", ""));
-                    pedido.setFechaPedido(rsPedidos.getDate("fecha_pedido").toLocalDate());
-                    pedido.setHoraPedido(rsPedidos.getTime("hora_pedido").toLocalTime());
+                    pedido.setFecha_pedido(rsPedidos.getDate("fecha_pedido"));
+                    pedido.setHora_pedido(rsPedidos.getTime("hora_pedido"));
                     pedido.setEstado(rsPedidos.getString("estado"));
                     pedido.setTotal(rsPedidos.getFloat("total"));
                     listaPedidos.add(pedido);
@@ -240,7 +269,7 @@ public class PedidoController {
             try (Connection conn = DatabaseConnection.getConnection();
                  PreparedStatement stmt = conn.prepareStatement(query)) {
 
-                stmt.setInt(1, pedidoSeleccionado.getId());
+                stmt.setInt(1, pedidoSeleccionado.getId_pedido());
                 stmt.executeUpdate();
 
             } catch (SQLException e) {
@@ -266,14 +295,14 @@ public class PedidoController {
         if (pedidoSeleccionado != null) {
             // Abrir la ventana de detalles para agregar productos
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/crudrestaurante/detallePedido-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jdbcrestaurantecrud/detallePedido-view.fxml"));
                 Stage stage = new Stage();
                 stage.setScene(new Scene(loader.load()));
                 stage.setTitle("Añadir Producto al Pedido");
 
                 // Pasar el ID del pedido seleccionado al controlador de la ventana de detalle
                 DetallePedidoController detalleController = loader.getController();
-                detalleController.setPedidoId(pedidoSeleccionado.getId());
+                detalleController.setPedidoId(pedidoSeleccionado.getId_pedido());
 
                 stage.show();
             } catch (IOException e) {
@@ -288,12 +317,64 @@ public class PedidoController {
     }
 
     @FXML
+    private void generarInforme() throws JRException {
+        String jrxmlFile = "src/main/jasperreports/InformePedido.jrxml";
+        String pdfFile = "src/main/jasperreports/reportesgenerados/InformePedido.pdf";
+
+        JasperReport report = JasperCompileManager.compileReport(jrxmlFile);
+
+        // Cargar datos desde la lista de clientes
+        JRDataSource datasource = new JRBeanCollectionDataSource(listaPedidosPreparacion);
+
+        // Llenar el informe con datos
+        JasperPrint jasperPrint = JasperFillManager.fillReport(report, null, datasource);
+
+        JasperViewer viewer = new JasperViewer(jasperPrint, false);
+        viewer.setVisible(true);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFile);
+
+        mostrarAlertaExito("Éxito", "Informe de productos generado correctamente en: " + pdfFile);
+    }
+
+    @FXML
+    private void generarInformeTicketPedido() throws JRException {
+        Pedido pedidoSeleccionado = tableView.getSelectionModel().getSelectedItem();
+
+        if (pedidoSeleccionado == null) {
+            mostrarAlerta("Error", "Seleccione un pedido para generar el informe.");
+            return;
+        }
+
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            String jasperFile = "src/main/jasperreports/Ticket.jasper";
+            String pdfFile = "src/main/jasperreports/reportesgenerados/InformeTicketPedido.pdf";
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(jasperFile);
+
+            // Parámetros para el informe
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("id_pedido", pedidoSeleccionado.getId_pedido());
+
+            // Llenar el informe con datos de la base de datos
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, conn);
+
+            // Mostrar el informe
+            JasperViewer.viewReport(jasperPrint, false);
+            JasperExportManager.exportReportToPdfFile(jasperPrint, pdfFile);
+
+        } catch (Exception e) {
+            mostrarAlerta("Error", "No se pudo generar el informe.");
+            e.printStackTrace();
+        }
+        
+    }
+
+    @FXML
     private void volverAlMenu() {
         try {
             Stage stageActual = (Stage) btVolver.getScene().getWindow();
             stageActual.close();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/crudrestaurante/menu-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jdbcrestaurantecrud/menu-view.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Menú Principal");

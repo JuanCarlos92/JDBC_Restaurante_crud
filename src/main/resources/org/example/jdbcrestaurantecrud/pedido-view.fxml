@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="516.0" prefWidth="694.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crudrestaurante.controllers.PedidoController">
+<AnchorPane prefHeight="516.0" prefWidth="694.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.jdbcrestaurantecrud.controllers.PedidoController">
     <Label fx:id="lbTitulo" layoutX="101.0" layoutY="21.0" text="Pedidos">
         <font>
           <Font name="Consolas Bold" size="36.0" />
@@ -78,7 +78,7 @@
          <DropShadow />
       </effect>
     </TableView>
-   <Button fx:id="btAñadirProducto" layoutX="435.0" layoutY="280.0" mnemonicParsing="false" onAction="#seleccionarPedido" prefHeight="40.0" prefWidth="217.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Añadir Productos...">
+   <Button fx:id="btAñadirProducto" layoutX="372.0" layoutY="280.0" mnemonicParsing="false" onAction="#seleccionarPedido" prefHeight="40.0" prefWidth="280.0" style="-fx-background-color: #ffe6b8; -fx-border-style: solid;" text="Detalles de Pedido &quot;Añadir Productos...&quot;">
       <cursor>
          <Cursor fx:constant="V_RESIZE" />
       </cursor>
@@ -88,6 +88,16 @@
       <font>
          <Font name="Comic Sans MS Italic" size="13.0" />
       </font>
+   </Button>
+   <Button fx:id="btJasper" layoutX="449.0" layoutY="450.0" mnemonicParsing="false" onAction="#generarInforme" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #dad8d6; -fx-border-style: solid;" text="Generar Informe &quot;En preparacion&quot;">
+      <effect>
+         <Reflection />
+      </effect>
+   </Button>
+   <Button fx:id="btJasperTicketPedido" layoutX="240.0" layoutY="450.0" mnemonicParsing="false" onAction="#generarInformeTicketPedido" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #dad8d6; -fx-border-style: solid;" text="Generar ticket de un pedido">
+      <effect>
+         <Reflection />
+      </effect>
    </Button>
 
 </AnchorPane>

@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="524.0" prefWidth="710.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crudrestaurante.controllers.ProductoController">
+<AnchorPane prefHeight="524.0" prefWidth="710.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.jdbcrestaurantecrud.controllers.ProductoController">
     <Label fx:id="lbTitulo" layoutX="111.0" layoutY="24.0" text="Productos">
         <font>
           <Font name="Consolas Bold" size="36.0" />
@@ -27,6 +27,11 @@
       <effect>
          <Reflection />
       </effect></Button>
+   <Button fx:id="btJasper" layoutX="544.0" layoutY="460.0" mnemonicParsing="false" onAction="#generarInforme" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #dad8d6; -fx-border-style: solid;" text="Generar Informe">
+      <effect>
+         <Reflection />
+      </effect>
+   </Button>
     <Button fx:id="btLista" layoutX="544.0" layoutY="25.0" mnemonicParsing="false" onAction="#cargarProductos" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #ffe6b8;" text="Actualizar Lista">
       <effect>
          <DropShadow />

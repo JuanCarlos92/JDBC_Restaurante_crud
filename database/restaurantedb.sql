@@ -54,7 +54,7 @@ CREATE TABLE `detalle_pedido` (
   `id_pedido` int NOT NULL,
   `id_producto` int NOT NULL,
   `cantidad` int NOT NULL,
-  `subtotal` decimal(10,2) NOT NULL,
+  `subtotal` float DEFAULT NULL,
   PRIMARY KEY (`id_detalle`),
   KEY `id_pedido` (`id_pedido`),
   KEY `id_producto` (`id_producto`),
@@ -69,7 +69,7 @@ CREATE TABLE `detalle_pedido` (
 
 LOCK TABLES `detalle_pedido` WRITE;
 /*!40000 ALTER TABLE `detalle_pedido` DISABLE KEYS */;
-INSERT INTO `detalle_pedido` VALUES (1,1,1,1,5.99),(2,1,3,1,1.50),(3,2,2,2,5.00),(4,3,4,2,15.98),(5,4,1,2,11.98),(6,5,1,2,11.98),(7,5,2,3,7.50),(8,5,1,4,23.96),(9,5,1,4,23.96),(10,5,3,2,3.00),(11,2,4,1,7.99),(12,5,5,1,2.00),(13,5,2,0,0.00),(14,5,2,0,0.00);
+INSERT INTO `detalle_pedido` VALUES (1,1,1,1,5.99),(2,1,3,1,1.5),(3,2,2,2,5),(4,3,4,2,15.98),(5,4,1,2,11.98),(6,5,1,2,11.98),(7,5,2,3,7.5),(8,5,1,4,23.96),(9,5,1,4,23.96),(10,5,3,2,3),(11,2,4,1,7.99),(12,5,5,1,2),(13,5,2,0,0),(14,5,2,0,0);
 /*!40000 ALTER TABLE `detalle_pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,14 +83,14 @@ DROP TABLE IF EXISTS `pedidos`;
 CREATE TABLE `pedidos` (
   `id_pedido` int NOT NULL AUTO_INCREMENT,
   `id_cliente` int NOT NULL,
-  `fecha_pedido` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_pedido` date DEFAULT NULL,
   `estado` enum('pendiente','en preparación','entregado') DEFAULT 'pendiente',
-  `total` decimal(10,2) NOT NULL,
+  `total` float DEFAULT NULL,
   `hora_pedido` time NOT NULL,
   PRIMARY KEY (`id_pedido`),
   KEY `id_cliente` (`id_cliente`),
   CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `clientes` (`id_cliente`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `pedidos` (
 
 LOCK TABLES `pedidos` WRITE;
 /*!40000 ALTER TABLE `pedidos` DISABLE KEYS */;
-INSERT INTO `pedidos` VALUES (1,1,'2025-02-18 08:08:15','pendiente',10.99,'09:14:39'),(2,2,'2025-02-18 08:08:15','en preparación',12.99,'09:14:39'),(3,3,'2025-02-18 08:08:15','entregado',15.98,'09:14:39'),(4,4,'2025-02-18 08:08:15','pendiente',11.98,'09:14:39'),(5,3,'2025-02-18 23:00:00','pendiente',72.40,'17:01:19'),(7,2,'2025-02-18 23:00:00','pendiente',0.00,'23:22:31');
+INSERT INTO `pedidos` VALUES (1,1,'2025-02-18','pendiente',10.99,'09:14:39'),(2,2,'2025-02-18','en preparación',12.99,'09:14:39'),(3,3,'2025-02-18','entregado',15.98,'09:14:39'),(4,4,'2025-02-18','pendiente',11.98,'09:14:39'),(5,3,'2025-02-19','pendiente',72.4,'17:01:19'),(7,2,'2025-02-19','pendiente',0,'23:22:31'),(9,2,'2025-03-10','en preparación',0,'10:03:34');
 /*!40000 ALTER TABLE `pedidos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +114,7 @@ CREATE TABLE `productos` (
   `id_producto` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
   `categoria` varchar(50) NOT NULL,
-  `precio` decimal(10,2) NOT NULL,
+  `precio` float DEFAULT NULL,
   `disponibilidad` int DEFAULT NULL,
   PRIMARY KEY (`id_producto`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -126,7 +126,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (1,'Hamburguesa Clásica','Comida',5.99,1),(2,'Papas Fritas','Comida',2.50,1),(3,'Refresco','Bebida',1.50,1),(4,'Pizza Margarita','Comida',7.99,1),(5,'Café Americano','Bebida',2.00,1);
+INSERT INTO `productos` VALUES (1,'Hamburguesa Clásica','Comida',5.99,1),(2,'Papas Fritas','Comida',2.5,1),(3,'Refresco','Bebida',1.5,1),(4,'Pizza Margarita','Comida',7.99,1),(5,'Café Americano','Bebida',2,1);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -139,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-24 15:11:08
+-- Dump completed on 2025-03-10 14:36:47

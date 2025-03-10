@@ -1,7 +1,7 @@
-package org.example.crudrestaurante.models;
+package org.example.jdbcrestaurantecrud.models;
 
 public class DetallePedido {
-    private Integer id;
+    private Integer id_detalle;
     private Pedido pedido;
     private Producto producto;
     private int cantidad;
@@ -10,8 +10,8 @@ public class DetallePedido {
 
     public DetallePedido() {}
 
-    public DetallePedido(int id, Pedido pedido, Producto producto, int cantidad, float precio) {
-        this.id = id;
+    public DetallePedido(int id_pedido, Pedido pedido, Producto producto, int cantidad, float precio) {
+        this.id_detalle = id_pedido;
         this.pedido = pedido;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -20,7 +20,7 @@ public class DetallePedido {
     }
 
     public DetallePedido(int idDetalle, Pedido pedido, Producto producto, int cantidad, float precioProducto, float subtotal) {
-        this.id = idDetalle;
+        this.id_detalle = idDetalle;
         this.pedido = pedido;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -28,8 +28,8 @@ public class DetallePedido {
         this.subtotal = subtotal;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId_detalle() { return id_detalle; }
+    public void setId_detalle(int id_detalle) { this.id_detalle = id_detalle; }
     public Pedido getPedido() { return pedido; }
     public void setPedido(Pedido pedido) { this.pedido = pedido; }
     public Producto getProducto() { return producto; }

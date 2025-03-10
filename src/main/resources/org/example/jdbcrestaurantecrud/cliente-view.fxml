@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="501.0" prefWidth="599.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.crudrestaurante.controllers.ClienteController">
+<AnchorPane prefHeight="501.0" prefWidth="599.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.jdbcrestaurantecrud.controllers.ClienteController">
     <Label fx:id="lbTitulo" layoutX="85.0" layoutY="41.0" text="Clientes">
         <font>
           <Font name="Consolas Bold" size="36.0" />
@@ -36,6 +36,11 @@
       <effect>
          <DropShadow />
       </effect></Button>
+   <Button fx:id="btJasper" layoutX="445.0" layoutY="435.0" mnemonicParsing="false" onAction="#generarInforme" prefHeight="40.0" prefWidth="121.0" style="-fx-background-color: #dad8d6; -fx-border-style: solid;" text="Generar Informe">
+      <effect>
+         <Reflection />
+      </effect>
+   </Button>
     <Label fx:id="lbNombre" layoutX="42.0" layoutY="92.0" text="Nombre" underline="true">
         <font>
           <Font name="System Bold" size="15.0" />

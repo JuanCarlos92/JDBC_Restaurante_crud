@@ -1,4 +1,4 @@
-package org.example.crudrestaurante.controllers;
+package org.example.jdbcrestaurantecrud.controllers;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -8,10 +8,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.example.crudrestaurante.database.DatabaseConnection;
-import org.example.crudrestaurante.models.DetallePedido;
-import org.example.crudrestaurante.models.Pedido;
-import org.example.crudrestaurante.models.Producto;
+import org.example.jdbcrestaurantecrud.database.DatabaseConnection;
+import org.example.jdbcrestaurantecrud.models.DetallePedido;
+import org.example.jdbcrestaurantecrud.models.Pedido;
+import org.example.jdbcrestaurantecrud.models.Producto;
 
 import java.sql.*;
 
@@ -41,8 +41,8 @@ public class DetallePedidoController {
 
     @FXML
     public void initialize() {
-        tableId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-        tableIdPedido.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPedido().getId()).asObject());
+        tableId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId_detalle()).asObject());
+        tableIdPedido.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getPedido().getId_pedido()).asObject());
         tableProducto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getProducto().getNombre()));
         tableCantidad.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCantidad()).asString());
         tablePrecio.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getPrecio()).asString());
@@ -258,7 +258,7 @@ public class DetallePedidoController {
                 stmt.setInt(1, idProducto);
                 stmt.setInt(2, cantidad);
                 stmt.setFloat(3, subtotal);
-                stmt.setInt(4, detalleSeleccionado.getId());
+                stmt.setInt(4, detalleSeleccionado.getId_detalle());
 
                 int filasAfectadas = stmt.executeUpdate();
 
@@ -287,7 +287,7 @@ public class DetallePedidoController {
             return;
         }
 
-        int idDetalle = detalleSeleccionado.getId();
+        int idDetalle = detalleSeleccionado.getId_detalle();
 
         String query = "DELETE FROM detalle_pedido WHERE id_detalle = ?";
 

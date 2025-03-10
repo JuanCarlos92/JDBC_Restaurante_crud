@@ -1,27 +1,27 @@
-package org.example.crudrestaurante.models;
+package org.example.jdbcrestaurantecrud.models;
 
 public class Cliente {
 
-    private Integer id;
+    private Integer id_cliente;
     private String nombre;
     private String telefono;
     private String direccion;
 
     public Cliente() {}
 
-    public Cliente(int id, String nombre, String telefono, String direccion) {
-        this.id = id;
+    public Cliente(int id_cliente, String nombre, String telefono, String direccion) {
+        this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.telefono = telefono;
         this.direccion = direccion;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_cliente() {
+        return id_cliente;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_cliente(Integer id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public String getDireccion() {

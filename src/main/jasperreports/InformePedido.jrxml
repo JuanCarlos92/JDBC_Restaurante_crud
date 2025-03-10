@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformePedido" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8e15d519-eab3-497d-b483-a5c1caac3ee0">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Database"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM PEDIDOS WHERE ESTADO = 'en preparación']]>
+	</queryString>
+	<field name="id_pedido" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_pedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_pedido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedidos"/>
+	</field>
+	<field name="id_cliente" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id_cliente"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_cliente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedidos"/>
+	</field>
+	<field name="fecha_pedido" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_pedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_pedido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedidos"/>
+	</field>
+	<field name="estado" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="estado"/>
+		<property name="com.jaspersoft.studio.field.label" value="estado"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedidos"/>
+	</field>
+	<field name="total" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedidos"/>
+	</field>
+	<field name="hora_pedido" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="hora_pedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="hora_pedido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pedidos"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="82" y="10" width="390" height="43" uuid="91f5fe7f-a65f-46a3-81ae-30f2d82c45a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Consolas" size="35"/>
+				</textElement>
+				<text><![CDATA[Informe de pedidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="106" y="60" width="327" height="22" uuid="6931f6fc-c9e8-4cc3-9eec-607a123c87f7"/>
+				<textElement>
+					<font isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Pedidos con estado 'En preparación']]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="2c4ebb21-8745-45a1-a9ad-477acaac72cb"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="92" height="15" uuid="66ed0c81-3c31-4948-8503-786a8730b169">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7c588d32-b7f7-4117-a57f-607ee3a6c59f"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<text><![CDATA[ID Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="19" width="92" height="15" uuid="b907f59a-a462-414e-a176-c5641378b435">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a82b364d-3558-4680-8c20-7e6381ea75f9"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<text><![CDATA[ID Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="19" width="92" height="15" uuid="11a53bf7-5147-4844-8015-e52a818dd37f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f0336e1d-a408-4c5d-ba13-80969c05cc79"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<text><![CDATA[Fecha Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="19" width="114" height="15" uuid="4409b35d-ad75-444e-acd7-a13a1f835145">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a060f4d4-6031-406b-b480-ce5c7eef0259"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="390" y="19" width="70" height="15" uuid="15197403-ba8d-439c-8633-4b27e5835646">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4bcdecb-ca0b-4d55-aed3-3a283cb9fe2a"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="460" y="19" width="92" height="15" uuid="8054b637-2b12-4d42-a5ef-3029f6aa7b3d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4dad98ed-f132-42c7-ac19-d7072ebdd1e2"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<text><![CDATA[Hora Pedido]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="ffde0804-90e8-496b-86fb-ee363619f187"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="92" height="15" uuid="5e3a3069-4595-42f1-a7d8-7ced72ffd9c5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7c588d32-b7f7-4117-a57f-607ee3a6c59f"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="104" y="0" width="80" height="15" uuid="0ed39642-8853-4613-a2f0-0191234f3cf8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a82b364d-3558-4680-8c20-7e6381ea75f9"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="184" y="0" width="92" height="15" uuid="4ee3c1e2-cc6a-4b6d-b22c-ae418c1ecbaf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f0336e1d-a408-4c5d-ba13-80969c05cc79"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="276" y="0" width="114" height="15" uuid="ce23cbee-10e0-4822-bdf1-a0a77a8ecaea">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a060f4d4-6031-406b-b480-ce5c7eef0259"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="390" y="0" width="70" height="15" uuid="7cf68778-aeff-4258-a639-459547e52511">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4bcdecb-ca0b-4d55-aed3-3a283cb9fe2a"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="460" y="0" width="92" height="15" uuid="b9ee5c0b-d453-404f-a7ce-d7dd3066a2ed">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4dad98ed-f132-42c7-ac19-d7072ebdd1e2"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Consolas"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora_pedido}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="30093aa1-3dd7-4eea-9cc9-e183637af8f4"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="c9e9a989-76ae-4c92-a08c-dba3c3185f04"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="736cac2d-8f9a-48bb-b4e7-09302ce0e313"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="c49bc611-71b3-4860-8112-76288860b48d"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

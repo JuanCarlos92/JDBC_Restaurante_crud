@@ -1,4 +1,4 @@
-package org.example.crudrestaurante;
+package org.example.jdbcrestaurantecrud;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

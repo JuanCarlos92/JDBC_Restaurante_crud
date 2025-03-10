@@ -1,4 +1,4 @@
-package org.example.crudrestaurante.controllers;
+package org.example.jdbcrestaurantecrud.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,7 @@ public class MenuController {
             Stage stagePrincipal = (Stage) btCliente.getScene().getWindow();
             stagePrincipal.close();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/crudrestaurante/cliente-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jdbcrestaurantecrud/cliente-view.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Clientes");
@@ -32,7 +32,7 @@ public class MenuController {
         Stage stagePrincipal = (Stage) btProducto.getScene().getWindow();
         stagePrincipal.close();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/crudrestaurante/producto-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jdbcrestaurantecrud/producto-view.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Productos");
@@ -44,7 +44,7 @@ public class MenuController {
         Stage stagePrincipal = (Stage) btPedido.getScene().getWindow();
         stagePrincipal.close();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/crudrestaurante/pedido-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jdbcrestaurantecrud/pedido-view.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Productos");

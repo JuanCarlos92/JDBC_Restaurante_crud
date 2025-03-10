@@ -1,4 +1,4 @@
-package org.example.crudrestaurante.controllers;
+package org.example.jdbcrestaurantecrud.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,8 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import org.example.crudrestaurante.database.DatabaseConnection;
-import org.example.crudrestaurante.models.Cliente;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
+import org.example.jdbcrestaurantecrud.database.DatabaseConnection;
+import org.example.jdbcrestaurantecrud.models.Cliente;
 
 import java.io.IOException;
 import java.sql.*;
@@ -31,7 +34,7 @@ public class ClienteController {
     @FXML
     public void initialize() {
         // Configurar las columnas de la tabla
-        tableId.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        tableId.setCellValueFactory(cellData -> new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getId_cliente()).asObject());
         tableNombre.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getNombre()));
         tableTelefono.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getTelefono()));
         tableDireccion.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDireccion()));
@@ -51,7 +54,7 @@ public class ClienteController {
 
             while (rs.next()) {
                 Cliente cliente = new Cliente();
-                cliente.setId(rs.getInt("id_cliente"));
+                cliente.setId_cliente(rs.getInt("id_cliente"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setTelefono(rs.getString("telefono"));
                 cliente.setDireccion(rs.getString("direccion"));
@@ -61,6 +64,29 @@ public class ClienteController {
             mostrarAlerta("Error", "No se pudo cargar la lista de clientes.");
             e.printStackTrace();
         }
+    }
+    @FXML
+    private ObservableList<Cliente> cargar1Clientes() {
+        listaClientes.clear();
+        String query = "SELECT * FROM Clientes";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId_cliente(rs.getInt("id_cliente"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setTelefono(rs.getString("telefono"));
+                cliente.setDireccion(rs.getString("direccion"));
+                listaClientes.add(cliente);
+            }
+        } catch (SQLException e) {
+            mostrarAlerta("Error", "No se pudo cargar la lista de clientes.");
+            e.printStackTrace();
+        }
+        return listaClientes;
     }
 
     @FXML
@@ -100,7 +126,7 @@ public class ClienteController {
             String nuevoTelefono = tfTelefono.getText().isEmpty() ? clienteSeleccionado.getTelefono() : tfTelefono.getText();
             String nuevaDireccion = tfDireccion.getText().isEmpty() ? clienteSeleccionado.getDireccion() : tfDireccion.getText();
 
-            String query = "UPDATE Clientes SET nombre = ?, telefono = ?, direccion = ? WHERE id = ?";
+            String query = "UPDATE Clientes SET nombre = ?, telefono = ?, direccion = ? WHERE id_cliente = ?";
 
             try (Connection conn = DatabaseConnection.getConnection();
                  PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -108,7 +134,7 @@ public class ClienteController {
                 stmt.setString(1, nuevoNombre);
                 stmt.setString(2, nuevoTelefono);
                 stmt.setString(3, nuevaDireccion);
-                stmt.setInt(4, clienteSeleccionado.getId());
+                stmt.setInt(4, clienteSeleccionado.getId_cliente());
                 stmt.executeUpdate();
 
             } catch (SQLException e) {
@@ -142,7 +168,7 @@ public class ClienteController {
                     listaClientes.clear(); // Limpiar la tabla antes de agregar el cliente encontrado
                     if (rs.next()) {
                         Cliente cliente = new Cliente();
-                        cliente.setId(rs.getInt("id_cliente"));
+                        cliente.setId_cliente(rs.getInt("id_cliente"));
                         cliente.setNombre(rs.getString("nombre"));
                         cliente.setTelefono(rs.getString("telefono"));
                         cliente.setDireccion(rs.getString("direccion"));
@@ -170,7 +196,7 @@ public class ClienteController {
             try (Connection conn = DatabaseConnection.getConnection();
                  PreparedStatement stmt = conn.prepareStatement(query)) {
 
-                stmt.setInt(1, clienteSeleccionado.getId());
+                stmt.setInt(1, clienteSeleccionado.getId_cliente());
                 stmt.executeUpdate();
 
             } catch (SQLException e) {
@@ -188,6 +214,25 @@ public class ClienteController {
             mostrarAlerta("Error", "Seleccione un cliente para eliminar.");
         }
     }
+    @FXML
+    private void generarInforme() throws JRException {
+        String jrxmlFile = "src/main/jasperreports/InformeCliente.jrxml";
+        String pdfFile = "src/main/jasperreports/reportesgenerados/InformeCliente.pdf";
+
+        JasperReport report = JasperCompileManager.compileReport(jrxmlFile);
+
+        // Cargar datos desde la lista de clientes
+        JRDataSource datasource = new JRBeanCollectionDataSource(listaClientes);
+
+        // Llenar el informe con datos
+        JasperPrint jasperPrint = JasperFillManager.fillReport(report, null,datasource);
+
+        JasperViewer viewer = new JasperViewer(jasperPrint, false);
+        viewer.setVisible(true);
+        JasperExportManager.exportReportToPdfFile(jasperPrint,pdfFile);
+
+        mostrarAlertaExito("Éxito", "Informe de clientes generado correctamente en: " + pdfFile);
+    }
 
     @FXML
     private void volverAlMenu() {
@@ -195,7 +240,7 @@ public class ClienteController {
             Stage stageActual = (Stage) btVolver.getScene().getWindow();
             stageActual.close();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/crudrestaurante/menu-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/jdbcrestaurantecrud/menu-view.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Menú Principal");
